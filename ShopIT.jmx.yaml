@@ -1,0 +1,243 @@
+---
+execution:
+- concurrency: 2
+  hold-for: 490s
+  iterations: 1
+  ramp-up: 10s
+  scenario: ShopIT
+scenarios:
+  ShopIT:
+    data-sources:
+    - delimiter: ','
+      loop: true
+      path: C:/Users/Milind Hanchate/Desktop/shopit.csv
+      quoted: false
+      variable-names: username
+    requests:
+    - do:
+      - assert:
+        - assume-success: false
+          contains:
+          - ShopIt has all the
+          not: false
+          regexp: false
+          subject: body
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/TestSite/Index.html
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Shopitv6/ShopItV60/default.asp-40
+        method: GET
+        url: http://demo.borland.com/ShopItV60/default.asp
+      include-timers: false
+      transaction: A101_Launch
+    - do:
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/default.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: join the exp/ShopItV60/main.asp-59
+        method: GET
+        url: http://demo.borland.com/ShopItV60/main.asp?from=welcome
+      - body:
+          New-Name-Button: Enter
+          name: ${username}
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Cache-Control: max-age=0
+          Content-Type: application/x-www-form-urlencoded
+          Origin: http://demo.borland.com
+          Referer: http://demo.borland.com/ShopItV60/main.asp?from=welcome
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: join the exp/ShopItV60/main.asp-65
+        method: POST
+        url: http://demo.borland.com/ShopItV60/main.asp
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/main.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: enterName/ShopItV60/products.asp-68
+        method: GET
+        url: http://demo.borland.com/ShopItV60/products.asp
+      include-timers: false
+      transaction: A102_Join_The_EXP
+    - do:
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/products.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Click_On_shirt/ShopItV60/checkselection.asp-76
+        method: GET
+        url: http://demo.borland.com/ShopItV60/checkselection.asp?product=shirt
+      include-timers: false
+      transaction: A103_Click_on_Product
+    - do:
+      - assert:
+        - assume-success: false
+          contains:
+          - This is the finest
+          not: false
+          regexp: false
+          subject: body
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/products.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Click_On_shirt/ShopItV60/product.asp-78
+        method: GET
+        url: http://demo.borland.com/ShopItV60/product.asp?code=9
+      include-timers: false
+      transaction: A104_Select_Product
+    - do:
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/product.asp?code=9
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Add_Basket/ShopItV60/basket.asp-84
+        method: GET
+        url: http://demo.borland.com/ShopItV60/basket.asp?code=9
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/basket.asp?code=9
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Add_Basket/ShopItV60/main.asp-88
+        method: GET
+        url: http://demo.borland.com/ShopItV60/main.asp
+      include-timers: false
+      transaction: A105_Add_To_Basket
+    - do:
+      - extract-regexp:
+          SID:
+            default: SID_NF
+            match-no: 1
+            regexp: name="(.*?)";
+            template: $1$
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/main.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: Back_Menu/ShopItV60/checkout.asp-89
+        method: GET
+        url: http://demo.borland.com/ShopItV60/checkout.asp
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/checkout.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: checkout/ShopItV60/kindofpayment.asp-92
+        method: GET
+        url: http://demo.borland.com/ShopItV60/kindofpayment.asp?choice=CreditCard&price=15.9&sid=${SID}
+      include-timers: false
+      transaction: A106_Check_Out_Basket
+    - do:
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/kindofpayment.asp?choice=CreditCard&price=15.9&sid=${SID}
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: continue/ShopItV60/card.asp-97
+        method: GET
+        url: http://demo.borland.com/ShopItV60/card.asp?sid=${SID}
+      - body:
+          ZipCode: '412101'
+          address: ravet
+          cardnumber: '123456789'
+          cardtype: American+Express
+          city: raver
+          expiration: 12%2F26
+          sid: ${SID}
+          state: maharashra
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Cache-Control: max-age=0
+          Content-Type: application/x-www-form-urlencoded
+          Origin: http://demo.borland.com
+          Referer: http://demo.borland.com/ShopItV60/card.asp?sid=${SID}
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: continue/ShopItV60/acknowledge.asp-102
+        method: POST
+        url: http://demo.borland.com/ShopItV60/acknowledge.asp
+      include-timers: false
+      transaction: A107_Continue
+    - do:
+      - follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/acknowledge.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: fill_details_Buy/ShopItV60/thanks.asp-106
+        method: GET
+        url: http://demo.borland.com/ShopItV60/thanks.asp
+      - assert:
+        - assume-success: false
+          contains:
+          - YOU 'RE OUT
+          not: false
+          regexp: false
+          subject: body
+        follow-redirects: true
+        headers:
+          Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+          Accept-Encoding: gzip, deflate
+          Accept-Language: en-US,en;q=0.9,hi;q=0.8,mr;q=0.7
+          Referer: http://demo.borland.com/ShopItV60/thanks.asp
+          Upgrade-Insecure-Requests: '1'
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        label: proceed/ShopItV60/fin.asp-110
+        method: GET
+        url: http://demo.borland.com/ShopItV60/fin.asp
+      include-timers: false
+      transaction: A108_Proceed
+    store-cache: true
+    store-cookie: true
+    use-dns-cache-mgr: false
+
